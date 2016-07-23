@@ -10,7 +10,7 @@ namespace test
     {
         static void Main(string[] args)
         {
-            string text= "这次句号在中间试试．全角很重要．";
+            string text= "有时候竖着也是不错的选择．";
             for (int i = 0; i < 0;i++)
             {
                 text = text + text;
@@ -39,17 +39,17 @@ namespace test
         {
             this.row = row;
             this.column = column;
-            transpose(/*text*/);
+            transpose();
         }
 
         public void transform(string input)
         {
             this.text = input;
             count = input.Length;
-            transpose(/*text*/);
+            transpose();
         }
 
-        public void transpose(/*string text*/)
+        public void transpose()
         {
             text = replaceSymbol(text);
             List<string> inputStrList = new List<string>();
@@ -139,8 +139,5 @@ namespace test
             }
             Console.WriteLine();
         }
-
-
-
     }
 }
