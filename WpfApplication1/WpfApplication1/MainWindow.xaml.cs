@@ -109,6 +109,20 @@ namespace WpfApplication1
             }
         }
 
+        private void textBox_row_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.Modifiers == ModifierKeys.None) && (e.Key == Key.Up))
+                textBox_row.Text = (row + 1).ToString();
+            else if ((Keyboard.Modifiers == ModifierKeys.None) && (e.Key == Key.Down) && row > 1)
+                textBox_row.Text = (row - 1).ToString();
+        }
 
+        private void textBox_column_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.Modifiers == ModifierKeys.None) && (e.Key == Key.Up))
+                textBox_column.Text = (column + 1).ToString();
+            else if ((Keyboard.Modifiers == ModifierKeys.None) && (e.Key == Key.Down) && column > 1)
+                textBox_column.Text = (column - 1).ToString();
+        }
     }
 }
