@@ -25,6 +25,7 @@ namespace test
     public class Transformer
     {
         public string result;
+        private string text;
         private int count;
         private int row;
         private int column;
@@ -38,15 +39,17 @@ namespace test
         {
             this.row = row;
             this.column = column;
+            transpose(/*text*/);
         }
 
-        public void transform(string text)
+        public void transform(string input)
         {
-            count = text.Length;
-            transpose(text);
+            this.text = input;
+            count = input.Length;
+            transpose(/*text*/);
         }
 
-        public void transpose(string text)
+        public void transpose(/*string text*/)
         {
             text = replaceSymbol(text);
             List<string> inputStrList = new List<string>();
@@ -62,6 +65,7 @@ namespace test
 
         private string replaceSymbol(string word)
         {
+            if(word!=null)
             word = word.Replace(',', '，')
                 .Replace('.', '．')
                 .Replace(':', '：')

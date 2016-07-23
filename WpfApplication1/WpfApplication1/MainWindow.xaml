@@ -5,13 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1"
         mc:Ignorable="d"
-        Title="WeChat Transformer" Height="344.5" Width="468">
-    <Grid Margin="0,0,-8,16">
+        Title="WeChat Transformer" Height="361.589" Width="548.054">
+    <Grid Margin="0,0,-8,39">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="19*"/>
         </Grid.ColumnDefinitions>
-        <TextBox x:Name="textBox1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="286,28,0,51" TextWrapping="Wrap" Text="TextBox" Width="161"/>
-        <TextBox x:Name="textBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,28,0,51" TextWrapping="Wrap" Text="这次句号在中间试试．全角很重要．啦啦啦" Width="271" TextChanged="textBox_TextChanged"/>
+        <TextBox x:Name="textBox1" Margin="4,10,17,8" TextWrapping="Wrap" Grid.Column="2"/>
+        <TextBox x:Name="textBox" Grid.ColumnSpan="2" Margin="10,10,1.758,8" TextWrapping="Wrap" TextChanged="textBox_TextChanged" KeyUp="textBox_KeyUp"/>
+        <Label x:Name="label1" Content="纵行: " Margin="3,1,185,-25" Grid.Row="1" Grid.Column="2"/>
+        <Label x:Name="label2" Content="字: " HorizontalAlignment="Left" Margin="128.242,1,0,-25" Width="39" Grid.Row="1" Grid.Column="2"/>
+        <TextBox x:Name="textBox_row" HorizontalAlignment="Left" Margin="48.242,3,0,-27" TextWrapping="Wrap" Text="8" Width="53" TextChanged="textBox_row_TextChanged" Height="26" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2"/>
+        <TextBox x:Name="textBox_column" Margin="154,3,0,-27" TextWrapping="Wrap" Text="7" TextChanged="textBox_column_TextChanged" Height="26" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left" Width="73"/>
     </Grid>
 </Window>
