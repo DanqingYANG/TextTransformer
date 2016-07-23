@@ -10,12 +10,13 @@ namespace test
     {
         static void Main(string[] args)
         {
-            string test= "这次句号在中间试试．全角很重要．";
-            for (int i = 0; i < 2;i++)
+            string text= "这次句号在中间试试．全角很重要．";
+            for (int i = 0; i < 0;i++)
             {
-                test = test + test;
+                text = text + text;
             }
-            Transformer t = new Transformer(test);
+            Transformer t = new Transformer();
+            t.transform(text);
             Console.WriteLine();
             Console.Write(t.result);
         }
@@ -25,30 +26,29 @@ namespace test
     {
         public string result;
         private int count;
-        private const int ROW    = 7;
-        private const int COLUMN = 9;
+        private int row;
+        private int column;
 
-        public Transformer(string text)
+        public Transformer()
         {
-            count = text.Length;
-            int capacity = ROW * COLUMN;
-            //check the length of input string, if longer than capacity, divide.
-            if (count < capacity)
-                transform(text);
-            else
-            {
-                Console.Write("divide message");
-                int components = (int)Math.Ceiling((double)count / capacity);
-                for (int i = 0; i < components; i++)
-                {
-                    string textPart = text.Substring(i * capacity, capacity);
-                    transform(textPart);
-                }
-            }
+            count = 0;
+        }
+
+        public void setBlockSize(int row, int column)
+        {
+            this.row = row;
+            this.column = column;
         }
 
         public void transform(string text)
         {
+            count = text.Length;
+            transpose(text);
+        }
+
+        public void transpose(string text)
+        {
+            text = replaceSymbol(text);
             List<string> inputStrList = new List<string>();
             //init charList
             for (int i = 0; i < count; i++)
@@ -56,20 +56,38 @@ namespace test
                 inputStrList.Add(text.Substring(i, 1));
             }
             print(inputStrList);
-
-            result = tranposMatrix(inputStrList);
-
+                result = tranposMatrix(inputStrList);
             return;
+        }
+
+        private string replaceSymbol(string word)
+        {
+            word = word.Replace(',', '，')
+                .Replace('.', '．')
+                .Replace(':', '：')
+                .Replace(';', '；')
+                .Replace('?', '？')
+                .Replace('1', '１')
+                .Replace('2', '２')
+                .Replace('3', '３')
+                .Replace('4', '４')
+                .Replace('5', '５')
+                .Replace('6', '６')
+                .Replace('7', '７')
+                .Replace('8', '８')
+                .Replace('9', '９')
+                .Replace('0', '０');
+            return word;
         }
 
         private string tranposMatrix(List<string> list)
         {
-            string[,] matrix = new string[ROW,COLUMN];
-            for (int i = 0; i<ROW;i++)
+            string[,] matrix = new string[row,column];
+            for (int i = 0; i<row;i++)
             {
-                for(int j= 0;j<COLUMN;j++)
+                for(int j= 0;j<column;j++)
                 {
-                    int currChar = i*COLUMN +j;
+                    int currChar = i*column +j;
                     if (currChar < count)
                     {
                         matrix[i,j] = list[currChar];
@@ -80,24 +98,22 @@ namespace test
                         string temp = "　";
                         matrix[i,j] = temp;
                     }
-                    
                 }
                 Console.WriteLine();
             }
             
             List<string> outputStrList = new List<string>();
             Console.Write("\n test: \n");
-            for (int i= 0; i<COLUMN;i++)
+            for (int i= 0; i<column;i++)
             {
-                for (int j= ROW;j>0;j-- )
+                for (int j= row;j>0;j-- )
                 {
-                    outputStrList.Add(matrix[j-1,i]);
+                    outputStrList.Add(matrix[j-1,i]+" ");
+
                     Console.Write(matrix[j - 1, i]+" ");
                 }
                 outputStrList.Add("\n");
-                //Console.WriteLine();
             }
-            
             return outPutString(outputStrList);
         }
 
@@ -108,7 +124,6 @@ namespace test
             {
                 s = s + l[i];
             }
-
             return s;
         }
 
@@ -120,6 +135,8 @@ namespace test
             }
             Console.WriteLine();
         }
+
+
 
     }
 }

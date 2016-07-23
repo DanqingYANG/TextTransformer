@@ -13,6 +13,5 @@
         </Grid.ColumnDefinitions>
         <TextBox x:Name="textBox1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="286,28,0,51" TextWrapping="Wrap" Text="TextBox" Width="161"/>
         <TextBox x:Name="textBox" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="10,28,0,51" TextWrapping="Wrap" Text="这次句号在中间试试．全角很重要．啦啦啦" Width="271" TextChanged="textBox_TextChanged"/>
-        <Button x:Name="button" Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Left" Height="36" Margin="286,261,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click"/>
     </Grid>
 </Window>
